@@ -10,7 +10,7 @@ class Menu:
     def __init__(self, gestion: Gestion):
         self.gestion = gestion
 
-    def mostrar(self) -> None:
+    def mostrarHeroesVillanos(self) -> None:
         """Muestra el menú principal y procesa las opciones."""
         while True:
             print("\n=== HÉROES Y VILLANOS DEL VIRGEN ===")
@@ -53,6 +53,42 @@ class Menu:
             except Exception:
                 logger.exception("Error no controlado en el menú.")
                 print("Se ha producido un error. Consulta el archivo aplicacion.log.")
+
+    def mostrarFutbol(self) -> None:
+        while True:
+                    print("\n========================")
+                    print("     PLANTILLAS DE FÚTBOL     ")
+                    print("\n========================")
+                    print("1. Agregar miembro")
+                    print("2. Listar plantilla")
+                    print("3. Crear plantilla")
+                    print("4. Salir")
+
+                    try:
+                        opcion = input("Elige una opción: ").strip()
+                        if opcion == "1":
+                            self._agregarMiembro()
+                        elif opcion == "2":
+                            self._listarPlantilla()
+                        elif opcion == "3":
+                            self._crearPlantilla()
+                        elif opcion == "4":
+                            logger.info("Aplicación cerrada por el usuario.")
+                            print("Hasta luego.")
+                            break
+                        else:
+                            print("Opción no válida.")
+                            logger.warning("Opción de menú no válida: %s", opcion)
+                    except (ValueError, TypeError) as exc:
+                        print(f"Error: {exc}")
+                        logger.warning("Entrada no válida: %s", exc)
+                    except (KeyboardInterrupt, EOFError):
+                        logger.info("Salida solicitada desde teclado.")
+                        print("\nAplicación finalizada.")
+                        break
+                    except Exception:
+                        logger.exception("Error no controlado en el menú.")
+                        print("Se ha producido un error. Consulta el archivo aplicacion.log.")
 
     def _crear(self, tipo: str) -> None:
         nombre = input("Nombre: ").strip()
