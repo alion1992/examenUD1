@@ -32,7 +32,15 @@ def main() -> None:
     try:
         gestion = Gestion()
         menu = Menu(gestion)
-        menu.mostrar()
+
+        opcion= input("Elige una opcion: 1. Heroes y Villanos || 2. Fútbol ").strip()
+        if opcion == "1":
+            menu.mostrarHeroesVillanos()
+        elif opcion == "2":
+            menu.mostrarFutbol()
+        else:
+            print("Opcion invalida.")
+
     except Exception:
         logger.exception("Error fatal en la aplicación.")
         print("La aplicación ha finalizado por un error. Consulta aplicacion.log.")
